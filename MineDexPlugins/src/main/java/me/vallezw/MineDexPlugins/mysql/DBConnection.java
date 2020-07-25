@@ -26,7 +26,7 @@ public class DBConnection {
         add.executeUpdate();
     }
 
-    public int getCoin(String username) throws SQLException, ClassNotFoundException {
+    public static int getCoin(String username) throws SQLException, ClassNotFoundException {
         Connection con = getConnection();
         PreparedStatement statement = con.prepareStatement("SELECT coindex FROM players WHERE username = '" + username + "'" );
 
