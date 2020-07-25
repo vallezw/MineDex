@@ -2,3 +2,7 @@ name: MineDex
 version: 0.1
 description: MineDex
 main: me.vallezw.MineDexPlugins.Main
+
+commands:
+  coindex:
+    description: coindex
