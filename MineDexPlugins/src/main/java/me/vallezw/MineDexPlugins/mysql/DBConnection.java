@@ -1,6 +1,7 @@
 package me.vallezw.MineDexPlugins.mysql;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DBConnection {
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
@@ -27,10 +28,15 @@ public class DBConnection {
 
     public int getCoin(String username) throws SQLException, ClassNotFoundException {
         Connection con = getConnection();
-        PreparedStatement get = con.prepareStatement("SELECT coindex from players WHERE username = '" + username + "'");
-        ResultSet result = get.executeQuery();
+        PreparedStatement statement = con.prepareStatement("SELECT coindex FROM players WHERE username = '" + username + "'" );
 
-        return result.getInt("coindex");
+        ResultSet result = statement.executeQuery();
+        ArrayList<Integer> array= new ArrayList<Integer>();
+        while(result.next()){
+            array.add(result.getInt("coindex"));
+        }
+        int coins = array.get(0);
+        return coins;
     }
 
     public void payUser(String sender, String receiver, int amount) throws SQLException, ClassNotFoundException {

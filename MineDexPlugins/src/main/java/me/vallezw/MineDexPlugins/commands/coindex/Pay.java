@@ -36,6 +36,17 @@ public class Pay implements CommandExecutor {
             int amount = Integer.valueOf(args[1]);
             DBConnection connection = new DBConnection();
             try {
+                int senderBalance = connection.getCoin(player.getDisplayName());
+                if (senderBalance < amount){
+                    player.sendMessage("You have not enough " + ChatColor.RED + "coindex");
+                    return true;
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
                 connection.payUser(player.getDisplayName(), args[0], amount);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
