@@ -8,3 +8,5 @@ commands:
     description: coindex
   pay:
     description: pay
+  showcoindex:
+    description: showcoin

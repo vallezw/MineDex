@@ -2,6 +2,7 @@ package me.vallezw.MineDexPlugins;
 
 import me.vallezw.MineDexPlugins.commands.coindex.CoinDex;
 import me.vallezw.MineDexPlugins.commands.coindex.Pay;
+import me.vallezw.MineDexPlugins.commands.coindex.ShowCoin;
 import me.vallezw.MineDexPlugins.listeners.JoinListener;
 import me.vallezw.MineDexPlugins.mysql.DBConnection;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,6 +23,7 @@ public class Main extends JavaPlugin {
         }
         new CoinDex(this);
         new Pay(this);
+        new ShowCoin(this);
         new JoinListener(this);
     }
 }
