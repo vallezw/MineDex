@@ -6,3 +6,5 @@ main: me.vallezw.MineDexPlugins.Main
 commands:
   coindex:
     description: coindex
+  pay:
+    description: pay
