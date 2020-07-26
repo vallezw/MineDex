@@ -4,7 +4,7 @@ import me.vallezw.MineDexPlugins.commands.coindex.CoinDex;
 import me.vallezw.MineDexPlugins.commands.coindex.Pay;
 import me.vallezw.MineDexPlugins.commands.coindex.ShowCoin;
 import me.vallezw.MineDexPlugins.listeners.JoinListener;
-import me.vallezw.MineDexPlugins.listeners.PlayerHarvestBlockEventListener;
+import me.vallezw.MineDexPlugins.listeners.BlockEventListener;
 import me.vallezw.MineDexPlugins.mysql.DBConnection;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -36,6 +36,6 @@ public class Main extends JavaPlugin {
         new Pay(this);
         new ShowCoin(this);
         new JoinListener(this);
-        new PlayerHarvestBlockEventListener(this);
+        new BlockEventListener(this);
     }
 }

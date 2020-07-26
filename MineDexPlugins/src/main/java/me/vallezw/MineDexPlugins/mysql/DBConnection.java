@@ -19,12 +19,13 @@ public class DBConnection {
     }
     public static void createtable() throws SQLException, ClassNotFoundException {
         Connection con = getConnection();
-        PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS players(username VARCHAR(50), coindex int, plotid1 int, plotid2 int, primary key(username), foreign key (plotid1) references position(id), foreign key (plotid2) references position(id)) ");
+        PreparedStatement create = con.prepareStatement(
+                "CREATE TABLE IF NOT EXISTS players (username VARCHAR(50), coindex int, plotid1 int, plotid2 int, primary key(username), foreign key (plotid1) references position (id), foreign key (plotid2) references position (id)) ");
         create.executeUpdate();
     }
     public static void createPositionTable() throws SQLException, ClassNotFoundException {
         Connection con = getConnection();
-        PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS position(id int PRIMARY KEY AUTO_INCREMENT, x double, y double, z double)");
+        PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS position (id int PRIMARY KEY AUTO_INCREMENT, x double, y double, z double)");
         create.executeUpdate();
     }
 
@@ -74,7 +75,7 @@ public class DBConnection {
     public static List<Integer> getIds(String username) throws SQLException, ClassNotFoundException {
 
         Connection con = getConnection();
-        PreparedStatement statement = con.prepareStatement("SELECT plotid1, plotid2 from players WHERE username = " + username);
+        PreparedStatement statement = con.prepareStatement("SELECT plotid1, plotid2 from players WHERE username = '" + username + "'");
         ResultSet result = statement.executeQuery();
 
         List<Integer> array = new ArrayList<Integer>();
