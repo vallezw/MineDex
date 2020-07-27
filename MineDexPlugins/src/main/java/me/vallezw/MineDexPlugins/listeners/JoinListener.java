@@ -23,8 +23,6 @@ public class JoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         Player p = e.getPlayer();
-        PermissionAttachment attachment = p.addAttachment(plugin);
-        attachment.setPermission("useplot", true);
         if (! p.hasPlayedBefore()){
             try {
                 DBConnection.addUser(p.getDisplayName());
@@ -34,6 +32,5 @@ public class JoinListener implements Listener {
                 classNotFoundException.printStackTrace();
             }
         }
-
     }
 }

@@ -1,5 +1,5 @@
 server.useplot:
   description: Basic permissions for My Cool Server.
-  default: true
-  block:
-    break: false
+  default: false
+  children:
+    essentials.build: false

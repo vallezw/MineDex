@@ -25,7 +25,8 @@ public class DBConnection {
     }
     public static void createPositionTable() throws SQLException, ClassNotFoundException {
         Connection con = getConnection();
-        PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS position (id int PRIMARY KEY AUTO_INCREMENT, x double, y double, z double)");
+        PreparedStatement create = con.prepareStatement(
+                "CREATE TABLE IF NOT EXISTS position (id int PRIMARY KEY AUTO_INCREMENT, x double, y double, z double)");
         create.executeUpdate();
     }
 
@@ -68,7 +69,7 @@ public class DBConnection {
         double z = p.getZ();
 
         Connection con = getConnection();
-        PreparedStatement add = con.prepareStatement("INSERT INTO players (x, y, z) VALUES(" + x + ", " + y + ", " + z +")");
+        PreparedStatement add = con.prepareStatement("INSERT INTO position (x, y, z) VALUES(" + x + ", " + y + ", " + z +")");
         add.executeUpdate();
     }
 

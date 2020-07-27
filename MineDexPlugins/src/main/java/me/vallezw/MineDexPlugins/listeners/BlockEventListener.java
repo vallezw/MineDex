@@ -28,18 +28,20 @@ public class BlockEventListener implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e){
         Player p = e.getPlayer();
-        Location l = e.getBlock().getLocation();
-        /*
-        Position blockPos = new Position(l.getX(), l.getY(), l.getZ());
+        if(!p.isOp()) {
+            Location l = e.getBlock().getLocation();
+            e.setCancelled(true);
+            Position blockPos = new Position(l.getX(), l.getY(), l.getZ());
 
-        try {
-            if (! CheckPos.checkSquare(blockPos, p.getDisplayName())){
-
+            try {
+                if (!CheckPos.checkSquare(blockPos, p.getDisplayName())) {
+                    e.setCancelled(true);
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            } catch (ClassNotFoundException classNotFoundException) {
+                classNotFoundException.printStackTrace();
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException classNotFoundException) {
-            classNotFoundException.printStackTrace();
-        }*/
+        }
     }
 }
