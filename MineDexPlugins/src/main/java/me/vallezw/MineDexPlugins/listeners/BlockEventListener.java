@@ -32,7 +32,6 @@ public class BlockEventListener implements Listener {
             Location l = e.getBlock().getLocation();
             e.setCancelled(true);
             Position blockPos = new Position(l.getX(), l.getY(), l.getZ());
-
             try {
                 if (!CheckPos.checkSquare(blockPos, p.getDisplayName())) {
                     e.setCancelled(true);

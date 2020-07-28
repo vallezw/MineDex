@@ -26,7 +26,7 @@ public class DBConnection {
     public static void createPositionTable() throws SQLException, ClassNotFoundException {
         Connection con = getConnection();
         PreparedStatement create = con.prepareStatement(
-                "CREATE TABLE IF NOT EXISTS position (id int PRIMARY KEY AUTO_INCREMENT, x double, y double, z double)");
+                "CREATE TABLE IF NOT EXISTS position (id int PRIMARY KEY AUTO_INCREMENT, x double, y double, z double, username VARCHAR(30))");
         create.executeUpdate();
     }
 
@@ -63,14 +63,29 @@ public class DBConnection {
         rem.executeUpdate();
     }
 
-    public void addPosition(Position p) throws SQLException, ClassNotFoundException {
+    public static Integer addPosition(Position p, String username) throws SQLException, ClassNotFoundException {
         double x = p.getX();
         double y = p.getY();
         double z = p.getZ();
 
         Connection con = getConnection();
-        PreparedStatement add = con.prepareStatement("INSERT INTO position (x, y, z) VALUES(" + x + ", " + y + ", " + z +")");
+        PreparedStatement add = con.prepareStatement("INSERT INTO position (x, y, z, username) VALUES(" + x + ", " + y + ", " + z +", "+ username + ")");
         add.executeUpdate();
+        PreparedStatement select = con.prepareStatement("SELECT x, y, z from position WHERE username = " + username);
+        ResultSet result = select.executeQuery();
+
+        List<Integer> array = new ArrayList<Integer>();
+        while(result.next()){
+            array.add(result.getInt("id"));
+        }
+
+        return array.get(0);
+    }
+
+    public static void writeIds(int id1, int id2, String username) throws SQLException, ClassNotFoundException {
+        Connection con = getConnection();
+        PreparedStatement statement = con.prepareStatement("UPDATE players set plotid1 = " + id1 + ", plotid2 = " + id2 + " WHERE username = " + username);
+        statement.executeUpdate();
     }
 
     public static List<Integer> getIds(String username) throws SQLException, ClassNotFoundException {

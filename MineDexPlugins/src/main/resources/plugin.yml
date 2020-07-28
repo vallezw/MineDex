@@ -10,3 +10,5 @@ commands:
     description: pay
   showcoindex:
     description: showcoin
+  createPlot:
+    description: Creates a plot
