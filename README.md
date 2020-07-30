@@ -1,1 +1,1 @@
-MineDex
+A MineDex Server Plugin
