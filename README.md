@@ -1,1 +1,2 @@
-A MineDex Server Plugin
+# Minedex
+A minecraft plugin for a citybuild server. 
